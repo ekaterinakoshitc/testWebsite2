@@ -20,10 +20,7 @@ def createcity(request):
         if form.is_valid():
             z=request.POST['name_city']
             t = CityBase.objects.get_or_create(name_city=z)
-            if t=='':
-                return redirect('city')
-            else:
-                error = 'Ошибка заполнения'
+            return redirect('city')
 
         else:
             error='Ошибка заполнения'
@@ -57,16 +54,18 @@ def createtemp(request):
 
 def findtemp(request):
     error=''
+    zap = ''
+
     if request.method == 'POST':
         form = TempBaseFindForm(request.POST)
         city = CityBase.objects.get(id=request.POST['i_city'])
         dateP = request.POST.get('datepicker')
         if form.is_valid():
-            form=''
-            form = TemperatureBaseOn.objects.filter(i_city =city, date= dateP)
-
+            zap = TemperatureBaseOn.objects.filter(i_city =city, date= dateP)
     form = TempBaseFindForm()
+
     data={
+        'zap': zap,
         'form': form,
         'error': error
     }

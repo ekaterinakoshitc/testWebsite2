@@ -12,12 +12,11 @@
             </tr>
             </thead>
             <tbody>
-            {% for i in cityForm %}
             <tr>
     <form method="post">
         {% csrf_token %}
-
-                <th scope="row">{{ i.id }} </th>
+        {% for i in cityForm %}
+        <th scope="row">{{ i.id }} </th>
                 <td>{{i}}</td>
         <span>{{ error }}</span>
                 <td><a href=""><button class="btn btn-warning">Изменить город</button></a></td>

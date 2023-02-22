@@ -5,7 +5,7 @@
 
 
     <div class="zt">
-        <h1>Диаграмма</h1>
+        <h1>Граффик</h1>
     </div>
 <div class="chart_data">
     <form method="post">
@@ -19,8 +19,13 @@
 
         </script>
         <span>{{ error }}</span>
-        <button class="btn btn-success" type="submit">Найти</button>
+        <button class="btn btn-success" type="submit">Найти</button> <br>
+        <p class="bag" style="color:red; align:center; width: 60%;
+        display:inline-block;
+        padding:2.5%; text-aliign:center;">Здесь должен был быть график</p>
+
     </form>
+    <!--
     <div class="chart">
 
      <div id="curve_chart" style="width: 900px; height: 500px"></div>
@@ -29,14 +34,14 @@
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
-      console.log(data.i_city)
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Year', 'Sales', 'Expenses'],
-          {% for i in form %}
+            {% for i in zap %}
           [{{ i.temperaturedata }}, {{ i.t }}],
-          {% endfor %}
+
+          {% endfor%}
 
         ]);
 
@@ -52,6 +57,7 @@
       }
     </script>
     </div>
+    -->
 
     </div>
 </div>
