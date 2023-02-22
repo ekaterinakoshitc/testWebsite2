@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+{% block title%}Города{% endblock %}
+{% block content %}
+<div class="zt">
+    <h1>Города</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered border-primary">
+            <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Наименование</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in cityForm %}
+            <tr>
+    <form method="post">
+        {% csrf_token %}
+
+                <th scope="row">{{ i.id }} </th>
+                <td>{{i}}</td>
+        <span>{{ error }}</span>
+                <td><a href=""><button class="btn btn-warning">Изменить город</button></a></td>
+
+                <td><a href="{% url 'deletecity' %}"><button class="btn btn-danger" type="submit">Удалить город</button></a></td>
+    </form>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'createcity' %}"><button class="btn btn-info">Добавить город</button></a>
+    </div>
+</div>
+
+{% endblock %}

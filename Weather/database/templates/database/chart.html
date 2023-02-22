@@ -1,0 +1,61 @@
+{% extends 'main/layout.html' %}
+{% block title%}Главная{% endblock %}
+
+{% block content %}
+
+
+    <div class="zt">
+        <h1>Диаграмма</h1>
+    </div>
+<div class="chart_data">
+    <form method="post">
+        {% csrf_token %}
+        <p>Выберите город: {{ form.i_city }}</p><br>
+        <p>Выберите дату:  <input type="text" id="datepicker" name="datepicker"/></p>
+        <script>
+            $( "#datepicker" ).change(function(){
+               var date =(  $( "#datepicker" ).val());
+            });
+
+        </script>
+        <span>{{ error }}</span>
+        <button class="btn btn-success" type="submit">Найти</button>
+    </form>
+    <div class="chart">
+
+     <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      console.log(data.i_city)
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          {% for i in form %}
+          [{{ i.temperaturedata }}, {{ i.t }}],
+          {% endfor %}
+
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

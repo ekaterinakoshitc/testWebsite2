@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+{% block title%}Добавление города{% endblock %}
+{% block content %}
+<div class="zt">
+    <h1>Форма добаления нового города</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name_city }}<br>
+        <span>{{ error }}</span>
+        <button class="btn btn-success" type="submit">Сохранить</button>
+    </form>
+</div>
+
+{% endblock %}

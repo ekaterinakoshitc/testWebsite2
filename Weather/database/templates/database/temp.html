@@ -1,0 +1,42 @@
+{% extends 'main/layout.html' %}
+{% block title%}Температура{% endblock %}
+{% block content %}
+<div class="zt">
+    <h1>Значения температуры</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered border-primary">
+            <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Город</th>
+            <th scope="col">Температура</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Час</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in tempForm %}
+            <tr>
+    <form method="post">
+        {% csrf_token %}
+
+                <th scope="row">{{ i.id }} </th>
+                <td>{{i.i_city}}</td>
+                <td>{{i.temperaturedata}}</td>
+                <td>{{i.date}}</td>
+                <td>{{i.t}}</td>
+        <span>{{ error }}</span>
+                <td><a href=""><button class="btn btn-warning">Изменить город</button></a></td>
+
+                <td><a href=""><button class="btn btn-danger" type="submit">Удалить город</button></a></td>
+    </form>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'createtemp' %}"><button class="btn btn-info">Добавить значение</button></a>
+    </div>
+</div>
+
+{% endblock %}

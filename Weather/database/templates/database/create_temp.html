@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+{% block title%}Добавление значения температуры{% endblock %}
+{% block content %}
+<div class="zt">
+    <h1>Форма добаления нового значения</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>Выберите город: {{ form.i_city }}</p><br>
+         {{ form.temperaturedata }}<br>
+         {{ form.date }}<br>
+         {{ form.t}}<br>
+        <span>{{ error }}</span>
+        <button class="btn btn-success" type="submit">Сохранить</button>
+    </form>
+</div>
+
+{% endblock %}
